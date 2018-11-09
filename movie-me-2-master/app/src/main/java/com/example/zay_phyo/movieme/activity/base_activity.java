@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import butterknife.ButterKnife;
 
+//never use
 public abstract class base_activity extends AppCompatActivity {
 
     abstract int getLayout();

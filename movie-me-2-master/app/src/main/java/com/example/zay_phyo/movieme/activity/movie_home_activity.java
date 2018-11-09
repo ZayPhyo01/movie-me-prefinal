@@ -147,6 +147,11 @@ l1=  findViewById(R.id.root_view);
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+if(item.getItemId()==R.id.search)
+{
+    Toast.makeText(getApplicationContext(),"Not available in preversion",Toast.LENGTH_SHORT).show();
+}
+
 
         return super.onOptionsItemSelected(item);
     }
