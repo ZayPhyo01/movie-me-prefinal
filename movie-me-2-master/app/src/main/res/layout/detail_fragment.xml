@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+       <include
+           layout="@layout/detail_header"
+           android:id="@+id/poster_root"
+           />
+
+        <LinearLayout
+            android:id="@+id/poster_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/poster_root"
+            android:orientation="vertical"
+
+            android:layout_centerHorizontal="true">
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/time_root"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/poster_title"
+            android:layout_margin="10dp"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/time_rounded"
+                android:gravity="center"
+                android:id="@+id/runtime"
+                 />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="34dp"
+                android:background="#534e4e" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:id="@+id/release_date"
+
+                android:textSize="15sp" />
+
+
+        </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/time_root"
+    android:orientation="horizontal"
+    android:id="@+id/more"
+    >
+
+        <Button
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/time_root"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/more_button"
+            android:visibility="gone"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/more_button"
+            android:text="More" />
+
+
+
+</LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/more"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="OverView"
+                android:textColor="#000"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/detail_overview"
+               />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="Production companies"
+                android:textColor="#000"
+                android:textSize="20dp" />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/company_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp" />
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</ScrollView>

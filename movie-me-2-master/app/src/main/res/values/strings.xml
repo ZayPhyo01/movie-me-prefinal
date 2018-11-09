@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Movie me\'\'</string>
+    <string name="dopen">open</string>
+    <string name="dclose">close</string>
+</resources>

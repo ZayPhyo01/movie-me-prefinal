@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:id="@+id/tab_root"
+    android:layout_marginLeft="90dp"
+    android:layout_marginRight="90dp"
+    android:layout_height="45dp">
+
+
+<TextView
+    android:layout_width="80dp"
+    android:layout_height="40dp"
+    android:text="Now"
+    android:id="@+id/now_tab"
+    android:gravity="center"
+    android:textColor="#fff"
+    android:textSize="18dp"
+    android:layout_marginRight="10dp"
+    android:background="@drawable/tab_rounded"
+    />
+<TextView
+    android:layout_width="80dp"
+    android:layout_height="40dp"
+    android:text="Upcoming"
+    android:textSize="14dp"
+    android:id="@+id/upcoming_tab"
+
+    android:layout_gravity="right"
+    android:gravity="center"
+
+    />
+</LinearLayout>
