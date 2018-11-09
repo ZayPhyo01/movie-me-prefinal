@@ -11,7 +11,8 @@ public class AppConstants {
     public static final int MOVIE_DATABASE_VERSION=33;
     public static final boolean ONLINE_MODE=true;
     public static final boolean OFFLINE_MODE=false;
-
+    public static final String DBNAME="meoffline_playing_dbases15";
+    public static final int DB_VERSION=15;
 
     public static class BottomTabLayout {
         public static final int BAR_VIEW = R.id.now_view;

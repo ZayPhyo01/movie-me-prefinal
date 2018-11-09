@@ -7,6 +7,7 @@ import com.example.zay_phyo.movieme.App;
 import com.example.zay_phyo.movieme.Persistance.DbModel.DbNowPlaying;
 import com.example.zay_phyo.movieme.Persistance.DbModel.DbPopular;
 import com.example.zay_phyo.movieme.Persistance.DbModel.DbTob;
+import com.example.zay_phyo.movieme.Persistance.DbModel.DbUpcoming;
 import com.example.zay_phyo.movieme.Persistance.DbModel.Detail;
 import com.example.zay_phyo.movieme.Persistance.DbModel.offline_result;
 import com.example.zay_phyo.movieme.Persistance.ListHelper;
@@ -273,6 +274,79 @@ public class Repository {
                 @Override
                 protected Void doInBackground(Void... voids) {
                     App.getApp().getDatabase().getMoivedao().deleteDetailMovie();
+
+                    return null;
+                }
+            }.execute();
+        }
+
+
+    }
+    public static class UpcomingDb {
+
+        public static void getData( ) {
+
+            new AsyncTask<Void, Void, Void>() {
+                @Override
+                protected Void doInBackground(Void... voids) {
+                  DbUpcoming dbUpcoming;
+                   dbUpcoming=   App.getApp().getDatabase().getMoivedao().getUpcomingMovie();
+
+                    if (dbUpcoming == null) {
+                        dbUpcoming = new DbUpcoming();
+                    }
+                    List<offline_result> list;
+
+                    list = dbUpcoming.getOffline_results_db();
+                    if (list == null) {
+                        list = new ArrayList<>();
+                    }
+
+                    Log.i("Db query list size : ", list.size() + "");
+
+                    List<MovieResult> movieResults = ListHelper.Offline_Online.convertToResult(list);
+
+                    MovieConvector movieConvector=new MovieConvector();
+                    movieConvector.setResults(movieResults);
+                    event.UpComingMovieResponse event=new event.UpComingMovieResponse();
+                    event.setSuccess(true);
+                    event.setMovieConvector(movieConvector);
+
+                    EventBus.getDefault().post(event);
+
+
+
+
+                    return null;
+                }
+            }.execute();
+
+        }
+
+        public static void insertData(final DbUpcoming dbUpcoming) {
+
+            new AsyncTask<DbUpcoming, Void, Void>() {
+                @Override
+                protected Void doInBackground(DbUpcoming... upcomings) {
+                    //   App.getApp().getDatabase().getMoivedao().deleteDetailMovie();
+                    App.getApp().getDatabase().getMoivedao().insertUpcomingMovie(upcomings[0]);
+
+                    //   Log.i("detail title",details[0].getTitle());
+                    //    Log.i("date",details[0].getRelease_date());
+                    Log.i("Db ", "Save");
+                    return null;
+                }
+            }.execute(dbUpcoming);
+
+
+        }
+        public static void delete()
+        {
+
+            new AsyncTask<Void, Void, Void>() {
+                @Override
+                protected Void doInBackground(Void... voids) {
+                    App.getApp().getDatabase().getMoivedao().deleteUpcomingMovie();
 
                     return null;
                 }

@@ -8,7 +8,12 @@ import android.widget.Toast;
 
 import com.example.zay_phyo.movieme.App;
 import com.example.zay_phyo.movieme.Constants.AppConstants;
+import com.example.zay_phyo.movieme.Persistance.DbModel.DbUpcoming;
+import com.example.zay_phyo.movieme.Persistance.ListConvetor;
+import com.example.zay_phyo.movieme.Persistance.ListHelper;
 import com.example.zay_phyo.movieme.R;
+import com.example.zay_phyo.movieme.Repository.Repository;
+import com.example.zay_phyo.movieme.Utils.NetWorkUtil;
 import com.example.zay_phyo.movieme.api.movieapi.movie_api_interface;
 import com.example.zay_phyo.movieme.data.movie_response.BaseResponse;
 import com.example.zay_phyo.movieme.event.event;
@@ -19,6 +24,7 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -33,13 +39,26 @@ public class upcoming_movie_presenter {
         this.context = context;
         this.movie_upcoming_view=movie_upcomint_view;
         EventBus.getDefault().register(this);
+        if(NetWorkUtil.isOnline(context))
+        {
+
+            LoadData();
+        }
+        else
+        {
+            Repository.UpcomingDb.getData();
+
+        }
+
     }
 
 
     @Subscribe
     public void getResult(event.UpComingMovieResponse upComingMovieResponse)
     {
-        if(upComingMovieResponse.isSuccess()) {
+        List<MovieResult>movieResults=new ArrayList<>();
+        movieResults=upComingMovieResponse.getMovieConvector().getResults();
+        if(upComingMovieResponse.isSuccess()&&movieResults.size()!=0) {
 
 
             Log.d("Upcoming","success");
@@ -78,7 +97,11 @@ public class upcoming_movie_presenter {
             @Override
             public void movieCallback(List<MovieResult> movieResults) {
 
+                DbUpcoming dbUpcoming=new DbUpcoming();
+                dbUpcoming.setOffline_results_db(ListHelper.Online_Offline.convertToTop(movieResults));
 
+
+                Repository.UpcomingDb.insertData(dbUpcoming);
                 Log.d("upcoming callback","work");
                 Log.d("upcoming callback","work");
                 Log.d("upcoming callback","work");

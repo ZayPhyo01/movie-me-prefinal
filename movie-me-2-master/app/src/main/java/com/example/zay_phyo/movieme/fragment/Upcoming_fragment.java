@@ -121,10 +121,11 @@ public static  android.support.v4.app.Fragment  getInstance(Context context1)
     @Override
     public void fail() {
     upcomingList.setVisibility(View.GONE);
-    shimmerFrameLayout.setVisibility(View.VISIBLE);
+
 
     swipeRefreshLayout.setRefreshing(false);
     shimmerFrameLayout.stopShimmerAnimation();
+    shimmerFrameLayout.setVisibility(View.GONE);
     relativeLayout.setVisibility(View.VISIBLE);
 
     }

@@ -28,11 +28,7 @@ public class MovieDetailPresenter {
     public void Presenter_LoadHelper(String movie_id)
     {
 
-
-
-
 Repository.DetalMovieDb.getData(Integer.parseInt(movie_id));
-
 
     }
 

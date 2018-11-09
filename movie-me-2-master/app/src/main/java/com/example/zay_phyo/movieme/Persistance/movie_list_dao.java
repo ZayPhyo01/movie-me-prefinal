@@ -9,7 +9,10 @@ import android.arch.persistence.room.Query;
 import com.example.zay_phyo.movieme.Persistance.DbModel.DbNowPlaying;
 import com.example.zay_phyo.movieme.Persistance.DbModel.DbPopular;
 import com.example.zay_phyo.movieme.Persistance.DbModel.DbTob;
+import com.example.zay_phyo.movieme.Persistance.DbModel.DbUpcoming;
 import com.example.zay_phyo.movieme.Persistance.DbModel.Detail;
+
+import java.util.List;
 
 @Dao
 public interface movie_list_dao {
@@ -59,6 +62,14 @@ public interface movie_list_dao {
     @Query("Select id from detail_movie_table where id =:ids ")
     int getDetailId(int ids);
 
+    @Query("Select * from upcoming_movie")
+    DbUpcoming getUpcomingMovie();
+
+    @Insert()
+    void insertUpcomingMovie(DbUpcoming dbUpcoming);
+
+    @Query("Delete from upcoming_movie")
+    void deleteUpcomingMovie();
 
 
 
